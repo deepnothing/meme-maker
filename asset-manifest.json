@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/memes/static/css/main.58eee7f8.chunk.css",
+    "main.js": "/memes/static/js/main.dbe94da3.chunk.js",
+    "main.js.map": "/memes/static/js/main.dbe94da3.chunk.js.map",
+    "runtime-main.js": "/memes/static/js/runtime-main.b683a87d.js",
+    "runtime-main.js.map": "/memes/static/js/runtime-main.b683a87d.js.map",
+    "static/css/2.1a02f21c.chunk.css": "/memes/static/css/2.1a02f21c.chunk.css",
+    "static/js/2.3fc03d2c.chunk.js": "/memes/static/js/2.3fc03d2c.chunk.js",
+    "static/js/2.3fc03d2c.chunk.js.map": "/memes/static/js/2.3fc03d2c.chunk.js.map",
+    "index.html": "/memes/index.html",
+    "static/css/2.1a02f21c.chunk.css.map": "/memes/static/css/2.1a02f21c.chunk.css.map",
+    "static/css/main.58eee7f8.chunk.css.map": "/memes/static/css/main.58eee7f8.chunk.css.map",
+    "static/js/2.3fc03d2c.chunk.js.LICENSE.txt": "/memes/static/js/2.3fc03d2c.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/memes/static/media/Impact.fb4bf19f.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b683a87d.js",
+    "static/css/2.1a02f21c.chunk.css",
+    "static/js/2.3fc03d2c.chunk.js",
+    "static/css/main.58eee7f8.chunk.css",
+    "static/js/main.dbe94da3.chunk.js"
+  ]
+}

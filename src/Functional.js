@@ -12,6 +12,7 @@ export default function Meme() {
     const [value, setValue] = useState('');
     const [textcolor, setTextcolor] = useState('black');
     const [size, setSize] = useState('');
+    const [loading, setLoading] = useState(false)
 
     let randomnumber = Math.floor(Math.random() * 100);
     let randomnumber2 = Math.floor(Math.random() * 100);
@@ -37,25 +38,29 @@ export default function Meme() {
             );
     }, []);
 
-    function goForward() {
+    function ReLoad() {
+        setLoading(true)
+        fetch("https://api.imgflip.com/get_memes")
 
-        randomnumber2 += 1
+            .then(response => {
+                if (!response.ok) {
+                    throw Error("ERROR FETCHING ");
+                }
 
-        if (randomnumber2 > 99) {
-            randomnumber2 = 0
-        }
-        setPhotos(allData.data.memes[randomnumber2].url)
-    };
+                return response.json()
+                    .then(response => {
+                        setLoading(false)
+                        setPhotos(response.data.memes[0].url);
+                        setAllData(response);
 
-    function goBack() {
-        randomnumber2 -= 1
+                    })
+                    .catch(err => {
+                        throw Error(err.message)
+                    });
+            }
+            );
 
-        if (randomnumber2 < 0) {
-            randomnumber2 = 99
-
-        }
-        setPhotos(allData.data.memes[randomnumber2].url)
-    };
+    }
 
     function saveImage() {
         domtoimage.toBlob(document.getElementById('my-node'))
@@ -92,11 +97,17 @@ export default function Meme() {
                     </Draggable>
                     <img style={{ height: '400px', width: '400px' }} src={photos} />
                 </div>
-                <Button variant="danger" className="backbutton" onClick={goBack}> PREVIOUS</Button>
-                <Button variant="success" className="forwardbutton" onClick={goForward}> NEXT</Button>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                    <Button variant="danger" className="backbutton" onClick={() => { randomnumber2-- > 99 ? randomnumber = 0 : randomnumber && setPhotos(allData.data.memes[randomnumber2].url) }}> PREVIOUS</Button>
+                    <Button variant="primary" onClick={ReLoad}> {loading ? <span>...</span> : <span>RELOAD</span>}</Button>
+                    <Button variant="success" className="forwardbutton" onClick={() => { randomnumber2++ > 99 ? randomnumber = 0 : randomnumber && setPhotos(allData.data.memes[randomnumber2].url) }}> NEXT</Button>
+
+                </div>
             </div>
             <div id="spacer"></div>
             <Button variant="warning" id="foo" onClick={saveImage}>DOWNLOAD</Button>
         </div >
     )
 }
+
+//() => {randomnumber2++ > 99 ? randomnumber = 0 : randomnumber && setPhotos(allData.data.memes[randomnumber2].url)}

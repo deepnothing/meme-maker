@@ -14,7 +14,6 @@ export default function Meme() {
     const [size, setSize] = useState('');
 
     let randomnumber = Math.floor(Math.random() * 100);
-
     let randomnumber2 = Math.floor(Math.random() * 100);
 
     useEffect(() => {
@@ -38,32 +37,6 @@ export default function Meme() {
             );
     }, []);
 
-
-
-    function handleInput(event) {
-        setValue(event.target.value);
-
-    };
-
-    function changeColorToBlack() {
-        setTextcolor('black')
-    };
-
-    function changeColorToWhite() {
-        setTextcolor('white')
-    };
-
-    function sizeSmall() {
-        setSize('20px')
-
-    };
-    function sizeMedium() {
-        setSize('40px')
-    };
-    function sizeLarge() {
-        setSize('80px')
-    };
-
     function goForward() {
 
         randomnumber2 += 1
@@ -84,7 +57,6 @@ export default function Meme() {
         setPhotos(allData.data.memes[randomnumber2].url)
     };
 
-
     function saveImage() {
         domtoimage.toBlob(document.getElementById('my-node'))
             .then(function (blob) {
@@ -100,14 +72,14 @@ export default function Meme() {
                 <div >
                     <div className="buttonbox">
 
-                        <Button variant="dark" id="btnfloat" onClick={changeColorToBlack}>black</Button>
-                        <Button variant="light" id="btnfloat" className="whyte" onClick={changeColorToWhite}>white</Button>
-                        <Button variant="secondary" size="sm" id="btnfloat" onClick={sizeSmall}>small</Button>
-                        <Button variant="secondary" size="md" id="btnfloat" onClick={sizeMedium}>medium</Button>
-                        <Button variant="secondary" size="lg" id="btnfloat" onClick={sizeLarge}> large</Button>
+                        <Button variant="dark" id="btnfloat" onClick={() => { setTextcolor('black') }}>black</Button>
+                        <Button variant="light" id="btnfloat" className="whyte" onClick={() => { setTextcolor('white') }}>white</Button>
+                        <Button variant="secondary" size="sm" id="btnfloat" onClick={() => { setSize('20px') }}>small</Button>
+                        <Button variant="secondary" size="md" id="btnfloat" onClick={() => { setSize('40px') }}>medium</Button>
+                        <Button variant="secondary" size="lg" id="btnfloat" onClick={() => { setSize('80px') }}> large</Button>
                         <div></div>
                     </div>
-                    <textarea id="textbar" type="text" placeholder="TEXT + SPACING HERE APPEARS ON IMAGE" onChange={handleInput} />
+                    <textarea id="textbar" type="text" placeholder="TEXT + SPACING HERE APPEARS ON IMAGE" onChange={(e) => { setValue(e.target.value); }} />
                 </div>
             </div>
             <div id="spacer"></div>
